@@ -1,0 +1,58 @@
+[
+    {
+        "merged": "com.vaani.app-debug-64:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.vaani.app-main-66:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.vaani.app-main-66:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.vaani.app-main-66:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/drawable_floating_button_background.xml.flat",
+        "source": "com.vaani.app-main-66:/drawable/floating_button_background.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/drawable_floating_button_processing.xml.flat",
+        "source": "com.vaani.app-main-66:/drawable/floating_button_processing.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/xml_accessibility_service_config.xml.flat",
+        "source": "com.vaani.app-main-66:/xml/accessibility_service_config.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/xml_backup_rules.xml.flat",
+        "source": "com.vaani.app-main-66:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/drawable_ic_vaani.xml.flat",
+        "source": "com.vaani.app-main-66:/drawable/ic_vaani.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.vaani.app-main-66:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/drawable_floating_button_idle.xml.flat",
+        "source": "com.vaani.app-main-66:/drawable/floating_button_idle.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/layout_floating_voice_button.xml.flat",
+        "source": "com.vaani.app-main-66:/layout/floating_voice_button.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/drawable_floating_button_success.xml.flat",
+        "source": "com.vaani.app-main-66:/drawable/floating_button_success.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/drawable_floating_button_listening.xml.flat",
+        "source": "com.vaani.app-main-66:/drawable/floating_button_listening.xml"
+    },
+    {
+        "merged": "com.vaani.app-debug-64:/xml_data_extraction_rules.xml.flat",
+        "source": "com.vaani.app-main-66:/xml/data_extraction_rules.xml"
+    }
+]

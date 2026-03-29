@@ -1,0 +1,36 @@
+R_DEF: Internal format may change without notice
+local
+color background
+color primary
+color surface
+color text_primary
+drawable floating_button_background
+drawable floating_button_idle
+drawable floating_button_listening
+drawable floating_button_processing
+drawable floating_button_success
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable ic_vaani
+id vaani_fab_icon
+layout floating_voice_button
+mipmap ic_launcher
+mipmap ic_launcher_round
+string accessibility_description
+string accessibility_service_label
+string app_name
+string channel_description
+string channel_name
+string continue_text
+string get_started
+string notification_text
+string notification_title
+string permissions_title
+string start_using_vaani
+string try_it_now
+string welcome_headline
+string welcome_subtitle
+style Theme.Vaani
+xml accessibility_service_config
+xml backup_rules
+xml data_extraction_rules
