@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vaani</string>
+    <string name="home">Home</string>
+    <string name="history">History</string>
+    <string name="settings">Settings</string>
+    <string name="hold_to_speak">Hold to speak</string>
+    <string name="listening">Listening...</string>
+    <string name="working_on_it">Working on it...</string>
+    <string name="your_ai_phone_agent">Your AI Phone Agent</string>
+    <string name="no_tasks_yet">No tasks yet</string>
+    <string name="hold_and_speak">Hold the button and speak.</string>
+    <string name="clear_all">Clear All</string>
+    <string name="done">Done</string>
+    <string name="failed">Failed</string>
+    <string name="in_progress">In Progress</string>
+    <string name="agent_active">Agent Active</string>
+    <string name="speak_responses">Speak responses</string>
+    <string name="response_language">Response language</string>
+    <string name="input_language">Input language</string>
+    <string name="mic_sensitivity">Mic sensitivity</string>
+    <string name="about">About</string>
+    <string name="app_version">App version</string>
+    <string name="how_it_works">How it works</string>
+    <string name="profile">Profile</string>
+    <string name="ai_agent">AI Agent</string>
+    <string name="voice">Voice</string>
+    <string name="name">Name</string>
+    <string name="language">Language</string>
+</resources>
