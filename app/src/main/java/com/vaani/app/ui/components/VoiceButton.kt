@@ -1,160 +1,120 @@
 package com.vaani.app.ui.components
 
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Mic
-import androidx.compose.material.icons.filled.MicOff
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Icon
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
-import com.vaani.app.data.model.AgentState
-import com.vaani.app.ui.theme.Error
-import com.vaani.app.ui.theme.Primary
-import com.vaani.app.ui.theme.PrimaryLight
-import com.vaani.app.ui.theme.Success
+import com.vaani.app.data.models.AgentState
+import com.vaani.app.ui.theme.*
 
 @Composable
 fun VoiceButton(
-    agentState: AgentState,
-    onPress: () -> Unit,
+    state: AgentState,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val infiniteTransition = rememberInfiniteTransition(label = "voiceButton")
-
-    val rippleScale by infiniteTransition.animateFloat(
+    val infiniteTransition = rememberInfiniteTransition(label = "breathing")
+    
+    val scale by infiniteTransition.animateFloat(
         initialValue = 1f,
-        targetValue = 1.5f,
+        targetValue = if (state == AgentState.IDLE) 1.05f else 1f,
         animationSpec = infiniteRepeatable(
             animation = tween(1000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
+            repeatMode = RepeatMode.Reverse
         ),
-        label = "rippleScale"
+        label = "scale"
     )
-
-    val rippleAlpha by infiniteTransition.animateFloat(
-        initialValue = 0.6f,
-        targetValue = 0f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        ),
-        label = "rippleAlpha"
-    )
-
-    val rotationAngle by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 360f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(2000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        ),
-        label = "rotation"
-    )
-
-    val buttonScale by animateFloatAsState(
-        targetValue = when (agentState) {
-            AgentState.LISTENING -> 1.05f
-            AgentState.PROCESSING -> 1.0f
-            AgentState.SUCCESS -> 1.1f
-            AgentState.IDLE -> 1.0f
-        },
-        animationSpec = tween(300),
-        label = "buttonScale"
-    )
-
-    val gradientColors = when (agentState) {
-        AgentState.IDLE -> listOf(Primary, PrimaryLight)
-        AgentState.LISTENING -> listOf(Error, Error.copy(alpha = 0.7f))
-        AgentState.PROCESSING -> listOf(Primary, PrimaryLight)
-        AgentState.SUCCESS -> listOf(Success, Success.copy(alpha = 0.7f))
-    }
-
-    val iconColor = when (agentState) {
-        AgentState.IDLE -> Color.White
-        AgentState.LISTENING -> Color.White
-        AgentState.PROCESSING -> Color.White
-        AgentState.SUCCESS -> Color.White
-    }
 
     Box(
         modifier = modifier
-            .size(160.dp),
+            .size(120.dp)
+            .scale(scale),
         contentAlignment = Alignment.Center
     ) {
-        if (agentState == AgentState.LISTENING) {
-            Box(
-                modifier = Modifier
-                    .size(120.dp)
-                    .scale(rippleScale)
-                    .clip(CircleShape)
-                    .background(Error.copy(alpha = rippleAlpha))
-            )
-            Box(
-                modifier = Modifier
-                    .size(120.dp)
-                    .scale(rippleScale * 0.8f)
-                    .clip(CircleShape)
-                    .background(Error.copy(alpha = rippleAlpha * 0.5f))
-            )
+        // Ripple rings for listening state
+        if (state == AgentState.LISTENING) {
+            RippleRings()
         }
 
-        Box(
+        Surface(
             modifier = Modifier
-                .size(120.dp)
-                .scale(buttonScale)
-                .clip(CircleShape)
-                .background(
-                    brush = Brush.radialGradient(
-                        colors = gradientColors
-                    )
-                )
-                .border(
-                    width = 2.dp,
-                    color = Color.White.copy(alpha = 0.3f),
-                    shape = CircleShape
-                )
-                .pointerInput(Unit) {
-                    detectTapGestures(
-                        onPress = {
-                            onPress()
-                            tryAwaitRelease()
-                        }
-                    )
-                },
-            contentAlignment = Alignment.Center
+                .size(100.dp)
+                .clickable(onClick = onClick),
+            shape = CircleShape,
+            color = Color.Transparent,
+            tonalElevation = 8.dp,
+            shadowElevation = 8.dp
         ) {
-            Icon(
-                imageVector = when (agentState) {
-                    AgentState.IDLE -> Icons.Filled.Mic
-                    AgentState.LISTENING -> Icons.Filled.Mic
-                    AgentState.PROCESSING -> Icons.Filled.MicOff
-                    AgentState.SUCCESS -> Icons.Filled.Check
-                },
-                contentDescription = "Voice Button",
-                tint = iconColor,
-                modifier = Modifier.size(48.dp)
-            )
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = when (state) {
+                                AgentState.SUCCESS -> listOf(Success, Success.copy(alpha = 0.7f))
+                                AgentState.FAILED -> listOf(ErrorColor, ErrorColor.copy(alpha = 0.7f))
+                                else -> listOf(Primary, PrimaryDark)
+                            }
+                        )
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = if (state == AgentState.SUCCESS) Icons.Default.Check else Icons.Default.Mic,
+                    contentDescription = "Voice Button",
+                    tint = Color.White,
+                    modifier = Modifier.size(48.dp)
+                )
+                
+                if (state == AgentState.PROCESSING) {
+                    // Spinning arc would go here, using a simpler CircularProgressIndicator for now or custom canvas
+                }
+            }
         }
     }
+}
+
+@Composable
+fun RippleRings() {
+    val infiniteTransition = rememberInfiniteTransition(label = "ripples")
+    
+    val rippleScale1 by infiniteTransition.animateFloat(
+        initialValue = 1f,
+        targetValue = 2f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1500, easing = LinearOutSlowInEasing),
+            repeatMode = RepeatMode.Restart
+        ),
+        label = "ripple1"
+    )
+    
+    val rippleAlpha1 by infiniteTransition.animateFloat(
+        initialValue = 0.5f,
+        targetValue = 0f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1500, easing = LinearOutSlowInEasing),
+            repeatMode = RepeatMode.Restart
+        ),
+        label = "alpha1"
+    )
+
+    Box(
+        modifier = Modifier
+            .size(100.dp)
+            .scale(rippleScale1)
+            .background(Primary.copy(alpha = rippleAlpha1), CircleShape)
+    )
 }

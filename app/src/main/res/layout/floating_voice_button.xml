@@ -4,18 +4,13 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <View
-        android:id="@+id/floating_button_background"
+    <ImageView
+        android:id="@+id/vaani_fab_icon"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:background="@drawable/floating_button_idle" />
-
-    <ImageView
-        android:id="@+id/floating_button_icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center"
-        android:src="@android:drawable/ic_btn_speak_now"
-        android:contentDescription="Voice button" />
-
+        android:src="@drawable/ic_vaani"
+        android:background="@drawable/floating_button_background"
+        android:elevation="8dp"
+        android:padding="12dp"
+        android:contentDescription="Vaani Voice Button"/>
 </FrameLayout>
